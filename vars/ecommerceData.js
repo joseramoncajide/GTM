@@ -1,5 +1,9 @@
-function() {
+function () {
 
+	var ecommerceData = [];
+	
+	//Measuring Product Impressions
+	
 	var products = [];
 
 	var a = document.querySelectorAll('[data-product-id]');
@@ -26,19 +30,55 @@ function() {
 					'position': productPosition
 				})
 		}
+
+		ecommerceData.push({
+			'impressions': products
+		})
 		
-	  var ecommerceData = {
+	} //if
+
+	//Measuring Promotion Impressions
+
+	var promotions = [];
+	
+	ecommerce_promotions = {
+     	 'promotions': promotions 
+	};
+
+	var b = document.querySelectorAll('[data-promo-name]');
+	//console.log(b.length);
+	
+	if(b && b.length > 0) {
+		
+		for(var i = 0; i < a.length; i++) {
+				promoName = b[i].getAttribute('data-promo-name') ? b[i].getAttribute('data-promo-name'): '(not set)',
+				promoCreative = b[i].getAttribute('data-promo-creative') ? b[i].getAttribute('data-promo-creative'): '(not set)',
+				promoPosition = b[i].getAttribute('data-promo-position') ? b[i].getAttribute('data-promo-position') : '(not set)';
+			
+				promotions.push({
+					'name': promoName,       
+					'creative': promoCreative,
+					'position': promoPosition
+				})
+		}
+		
+		ecommerceData.push({
+			'promoView': ecommerce_promotions
+		})
+		
+	} //if
+ 
+ 
+ 
+ 	  var ecommerceData = {
 		'ecommerce' : {
-		  currencyCode : 'EUR',
-		  'impressions': products
+			'currencyCode' : 'EUR',
+			'impressions': products,
+		    'promoView': ecommerce_promotions
 		}
 	  };
   	
   	return ecommerceData;
   
-  } else {
- 
-  return undefined;
-  
-  }
+
 }
