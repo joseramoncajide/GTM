@@ -47,12 +47,15 @@ function () {
 
 	var b = document.querySelectorAll('[data-promo-name]');
 	//console.log(b.length);
+
 	
 	if(b && b.length > 0) {
 		
-		for(var i = 0; i < a.length; i++) {
+		for(var i = 0; i < b.length; i++) {
+
+
 				promoName = b[i].getAttribute('data-promo-name') ? b[i].getAttribute('data-promo-name'): '(not set)',
-				promoCreative = b[i].getAttribute('data-promo-creative') ? b[i].getAttribute('data-promo-creative'): '(not set)',
+				promoCreative = b[i].getAttribute('data-promo-creative') ? b[i].getAttribute('data-promo-creative'): b[i].innerText.replace(/^\s+|\s+$/g, ''),
 				promoPosition = b[i].getAttribute('data-promo-position') ? b[i].getAttribute('data-promo-position') : '(not set)';
 			
 				promotions.push({
