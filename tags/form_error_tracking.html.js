@@ -113,7 +113,7 @@
                 w.func.call(el, w, i, mRec, mObs);
 
                 // rebind the events
-                hookChange(el$, id, w);
+                //hookChange(el$, id, w);
             }
         }
     }
@@ -153,6 +153,9 @@ formErrors.watch({
     // specify CSS styles or attribute names to monitor
   //  properties: "top,left,opacity,attr_class,prop_innerHTML",
     properties: "attr_class",
+    //properties: "has-error",
+    watchChildren: true,
+    
 
     // callback function when a change is detected
     callback: function(data, i) {
@@ -162,10 +165,10 @@ formErrors.watch({
 
         var el = this;
         var el$ = $(this);
-       // console.log($(this).find('control-label'));
+       console.log($(this).find('control-label'));
       $(this).find('.control-label').each(function(e){
       var error_msg  = $.trim($(this).text().slice(0,-2));
-      //console.log(error_msg);
+      console.log(error_msg);
           dataLayer.push({
             'event': 'eventga',
             'category' : 'Form Error',
@@ -176,6 +179,7 @@ formErrors.watch({
           });
         
       });
+      
       
     }
 });
